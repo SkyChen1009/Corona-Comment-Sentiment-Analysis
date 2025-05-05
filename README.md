@@ -23,10 +23,26 @@ R- EADME.md: 本說明文件。
 
 ## 下一步計劃
 - 強化分詞功能，讓分詞後的tokenized series 更乾淨。
-- 提升模型性能: 檢查數據預處理流程，確保詞向量質量。
 - 調整模型超參數（如學習率、隱藏層大小、批量大小）。
 - 考慮使用預訓練詞向量（如 GloVe 或 BERT）替代自訓練的Word2Vec。
-- 分析數據集的序列長度分佈，優化 max_len 參數以減少填充或截斷。
+- 現在仍有overfitting 問題，從步驟七的圖表可以得知。
+
+## 0505 完成進度
+- hyperparameter 的微調為以下：
+- 添加超參數調優（步驟5.5）：
+- 1. 在步驟5.5中引入了基於 ParameterGrid 的網格搜索，針對以下超參數進行調優：
+- 2. 學習率（learning_rate）：測試 [0.001, 0.0001]。
+- 3. 隱藏層維度（hidden_dim）：測試 [128, 256]。
+- 4. Dropout 比率（dropout）：測試 [0.3, 0.5]。
+- 5. 批次大小（batch_size）：測試 [32, 64]。
+- 6. LSTM 層數（num_layers）：測試 [1, 2]。
+- 7. 通過訓練和驗證集上的表現（驗證準確率）選出最佳參數組合，更新了 BATCH_SIZE、HIDDEN_DIM、DROPOUT 和 NUM_LAYERS，並將最佳學習率應用於最終模型訓練。
+```
+Best parameters: {'batch_size': 32, 'dropout': 0.3, 'hidden_dim': 128, 'learning_rate': 0.001, 'num_layers': 1}, Validation Accuracy: 0.7031952375167051
+```
+- BiLSTM 的增強：
+- 1. 嵌入層 Dropout：在嵌入層輸出後添加了 Dropout（embedded = self.dropout(embedded)），靈感來自 BiLSTM 的 self.dropout(self.embedding(text))。
+- 2. 可選的隱藏狀態拼接：新增 use_hidden_states 參數，允許選擇使用 LSTM 的隱藏狀態（hidden[-2,:,:] 和 hidden[-1,:,:]，如 BiLSTM）或原始的序列輸出（lstm_out[:, -1, :] 和 lstm_out[:, 0, :]）進行拼接。
 
 ## 如何運行
 - 環境設置: 安裝 Python 3.10.13（或相容版本）。
