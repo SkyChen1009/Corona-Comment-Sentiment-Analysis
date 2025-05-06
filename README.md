@@ -43,6 +43,10 @@ Best parameters: {'batch_size': 32, 'dropout': 0.3, 'hidden_dim': 128, 'learning
 - BiLSTM 的增強：
 - 1. 嵌入層 Dropout：在嵌入層輸出後添加了 Dropout（embedded = self.dropout(embedded)），靈感來自 BiLSTM 的 self.dropout(self.embedding(text))。
 - 2. 可選的隱藏狀態拼接：新增 use_hidden_states 參數，允許選擇使用 LSTM 的隱藏狀態（hidden[-2,:,:] 和 hidden[-1,:,:]，如 BiLSTM）或原始的序列輸出（lstm_out[:, -1, :] 和 lstm_out[:, 0, :]）進行拼接。
+ 
+## 0506 完成進度：
+- 1. 用GloVe 取代word2Vec，acc 平均來到68%。
+- 2. 目前overfitting 問題已解決，training and validation loss 都有明顯下降。
 
 ## 如何運行
 - 環境設置: 安裝 Python 3.10.13（或相容版本）。
