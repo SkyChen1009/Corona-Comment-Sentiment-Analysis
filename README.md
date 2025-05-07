@@ -15,6 +15,7 @@ R- EADME.md: 本說明文件。
 ```
 0507 Best parameters: {'batch_size': 32, 'dropout': 0.3, 'hidden_dim': 128, 'learning_rate': 0.001, 'num_layers': 4}, Validation Accuracy: 0.7138865265459847
 ```
+- 2. 將泰源和我的notebook，最後acc 平均來到 80%。
 
 ## 0506 完成進度：
 - 1. 用GloVe 取代word2Vec，acc 平均來到68%。
