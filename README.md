@@ -48,6 +48,12 @@ Best parameters: {'batch_size': 32, 'dropout': 0.3, 'hidden_dim': 128, 'learning
 - 1. 用GloVe 取代word2Vec，acc 平均來到68%。
 - 2. 目前overfitting 問題已解決，training and validation loss 都有明顯下降。
 
+## 0507 完成進度：
+- 1. 新增hyperparameter 的num_layer = 4，acc 平均來到 70%。
+```
+0507 Best parameters: {'batch_size': 32, 'dropout': 0.3, 'hidden_dim': 128, 'learning_rate': 0.001, 'num_layers': 4}, Validation Accuracy: 0.7138865265459847
+```
+
 ## 如何運行
 - 環境設置: 安裝 Python 3.10.13（或相容版本）。
 - 安裝依賴套件：
